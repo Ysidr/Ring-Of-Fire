@@ -1,0 +1,57 @@
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.start-screen {
+    @include center;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    background-color: #b61818;
+
+    button {
+
+        margin: 20px 0;
+        width: 200px;
+        height: 50px;
+        background-color: black;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            border: 2px solid gold;
+            transform: scale(1.05);
+        }
+    }
+
+
+
+
+}
+
+.banner {
+    position: absolute;
+    top: 64px;
+    @include center;
+    width: 840px;
+    flex-direction: column;
+    height: 200px;
+
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        position: absolute;
+        top: 60px;
+    }
+}
