@@ -19,15 +19,25 @@ export class GameComponent {
   }
 
 
-    takeCard() {
-        this.isTaken = true;
-        this.currentCard = this.game.Stack.pop() || "";
-        this.game.LayedCards.push(this.currentCard);
-        console.log(this.currentCard);
+  takeCard() {
+    if (this.isTaken) {
+      return;
     }
+    this.isTaken = true;
+    this.currentCard = this.game.Stack.pop() || "";
+    setTimeout(() => {
+      this.game.LayedCards.push(this.currentCard);
+    }, 1000);
 
-    newGame() {
-        this.game = new Game()  ;
-    }
+    
+    console.log(this.currentCard);
+    setTimeout(() => {
+      this.isTaken = false;
+    }, 2000);
+  }
+
+  newGame() {
+    this.game = new Game();
+  }
 
 }

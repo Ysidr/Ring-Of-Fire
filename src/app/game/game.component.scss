@@ -19,7 +19,7 @@
 .card-stack {
   position: relative;
 
-  img:not(.cardTaken) {
+  img:not(.cardTaken):not(.layed-card) {
     width: 150px;
     position: absolute;
     transition: all 0.3s ease;
@@ -53,4 +53,11 @@
   100% {
     transform: rotate(0deg) scale(1.5) translateX(100px) translateY(-200px);
   }
+}
+
+.layed-card {
+  position: absolute;
+  width: 150px;
+  right: 25px;
+  transform: scale(1.5) translateX(100px) translateY(-200px);
 }
