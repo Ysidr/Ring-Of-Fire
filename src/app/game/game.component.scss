@@ -1,3 +1,9 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .gameField {
   width: 100vw;
   height: 100vh;
@@ -6,5 +12,45 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  @include center;
 
+}
+
+.card-stack {
+  position: relative;
+
+  img:not(.cardTaken) {
+    width: 150px;
+    position: absolute;
+    transition: all 0.3s ease;
+
+    &:last-child {
+      right: 0;
+
+      &:hover {
+        transform: scale(1.05);
+        rotate: -5deg;
+      }
+    }
+  }
+
+}
+
+
+.cardTaken {
+  position: absolute;
+  width: 150px;
+  animation: take-Card-Animation 1s ease forwards;
+}
+
+@keyframes take-Card-Animation {
+  0% {
+    transform: rotate(-5deg) scale(1.05);
+  }
+  50% {
+    transform: rotate(-5deg) scale(1.5);
+  }
+  100% {
+    transform: rotate(0deg) scale(1.5) translateX(100px) translateY(-200px);
+  }
 }
