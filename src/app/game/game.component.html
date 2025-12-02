@@ -1,4 +1,4 @@
-<app-player *ngFor="let player of game.Players let i = index" [ngStyle]="{'top.px': i * 70}" class="appPlayerPosition"></app-player>
+<app-player *ngFor="let player of game.Players let i = index" [ngStyle]="{'top.px': 180 + (i * 70)}" [playerName]="player" class="appPlayerPosition"></app-player>
 
 
 <section class="gameField">
