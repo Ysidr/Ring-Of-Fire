@@ -1,3 +1,6 @@
+<app-player *ngFor="let player of game.Players let i = index" [ngStyle]="{'top.px': i * 70}" class="appPlayerPosition"></app-player>
+
+
 <section class="gameField">
     <div class="card-stack">
         <!-- <img [ngStyle]="{'right.px': i * 7}" [class.cardTaken]="isTaken && last" *ngFor="let card of [0,1,2,3,4,5]; let i= index let last = last " (click)="last && takeCard()" src="/img/cards/card_cover.png" alt=""> -->

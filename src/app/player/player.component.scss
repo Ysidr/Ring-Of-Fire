@@ -1,0 +1,15 @@
+.player {
+    display: flex;
+    align-items: center;
+    width: 150px;
+    height: 64px;
+    color: white;
+    border-radius: 25px 0 0 25px;
+    padding-left: 32px;
+    background-color: rgba(204, 1, 1, 0.578);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    span {
+        font-size: 20px;
+    }
+}
