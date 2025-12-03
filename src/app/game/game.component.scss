@@ -35,7 +35,7 @@
     position: absolute;
     transition: all 0.3s ease;
 
-    &:last-child {
+    &:nth-child(6) {
       right: 0;
 
       &:hover {

@@ -1,17 +1,20 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-card-rules',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, CommonModule],
   templateUrl: './card-rules.component.html',
   styleUrl: './card-rules.component.scss'
 })
 export class CardRulesComponent {
 
+  
   @Input() card! :string;
+  show:boolean = false;
 
   title:string = "";
   description:string = "";
@@ -39,6 +42,7 @@ export class CardRulesComponent {
     let cardNumber = +this.card.split('_')[0];
     this.title = this.cardAction[cardNumber-2].title;
     this.description = this.cardAction[cardNumber-2].description;
+    this.show = true;
   }
 }
 

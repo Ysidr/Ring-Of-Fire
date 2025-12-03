@@ -43,7 +43,8 @@ export class GameComponent {
     }, 1000);
     setTimeout(() => {
       this.isTaken = false;
-    }, 2000);
+    }, 1200);
+    this.game.CurrentPlayer = (this.game.CurrentPlayer + 1) % this.game.Players.length;
   }
 
   newGame() {
