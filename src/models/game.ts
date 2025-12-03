@@ -5,7 +5,7 @@ export class Game {
     public CurrentPlayer: number = 0;
 
     constructor() {
-        for (let i = 2; i < 11; i++) {
+        for (let i = 2; i < 15; i++) {
             this.Stack.push(i + "_of_hearts");
             this.Stack.push(i + "_of_diamonds");
             this.Stack.push(i + "_of_clubs");
@@ -18,24 +18,8 @@ export class Game {
 }
 
 function addSpecialCards(game: Game) {
-    game.Stack.push("ace_of_hearts");
-    game.Stack.push("ace_of_diamonds");
-    game.Stack.push("ace_of_clubs");
-    game.Stack.push("ace_of_spades");
-    game.Stack.push("jack_of_hearts2");
-    game.Stack.push("jack_of_diamonds2");
-    game.Stack.push("jack_of_clubs2");
-    game.Stack.push("jack_of_spades2");
-    game.Stack.push("queen_of_hearts2");
-    game.Stack.push("queen_of_diamonds2");
-    game.Stack.push("queen_of_clubs2");
-    game.Stack.push("queen_of_spades2");
-    game.Stack.push("king_of_hearts2");
-    game.Stack.push("king_of_diamonds2");
-    game.Stack.push("king_of_clubs2");
-    game.Stack.push("king_of_spades2");
-    game.Stack.push("red_joker");
-    game.Stack.push("black_joker");
+    game.Stack.push("15_joker");
+    game.Stack.push("16_joker");
 }
 
 function shuffleArray(array: any[]) {

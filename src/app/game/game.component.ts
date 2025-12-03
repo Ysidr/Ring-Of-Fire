@@ -6,12 +6,14 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
-
+import { CardRulesComponent } from '../card-rules/card-rules.component';
+import {MatCardModule} from '@angular/material/card';
+import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [CommonModule, PlayerComponent, MatIconModule, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, PlayerComponent, MatIconModule, MatButtonModule, MatDialogModule, CardRulesComponent, MatCardModule],
   templateUrl: './game.component.html',
   styleUrl: './game.component.scss'
 })
@@ -27,7 +29,6 @@ export class GameComponent {
 
   ngOnInit(): void {
     this.newGame();
-    console.log(this.game);
   }
 
 
@@ -40,9 +41,6 @@ export class GameComponent {
     setTimeout(() => {
       this.game.LayedCards.push(this.currentCard);
     }, 1000);
-
-    
-    console.log(this.currentCard);
     setTimeout(() => {
       this.isTaken = false;
     }, 2000);
