@@ -47,8 +47,8 @@ export class GameComponent {
     }, 1000);
     setTimeout(() => {
       this.isTaken = false;
-    }, 1200);
-    this.game.CurrentPlayer = (this.game.CurrentPlayer + 1) % this.game.Players.length;
+    }, 1000);
+    this.game.CurrentPlayer = (this.game.Players.length > 0)?(this.game.CurrentPlayer + 1) % this.game.Players.length: 0;
     this.cardStackDisplaySize()
   }
 

@@ -4,7 +4,6 @@
 
 <section class="gameField">
     <div class="card-stack">
-        <!-- <img [ngStyle]="{'right.px': i * 7}" [class.cardTaken]="isTaken && last" *ngFor="let card of [0,1,2,3,4,5]; let i= index let last = last " (click)="last && takeCard()" src="/img/cards/card_cover.png" alt=""> -->
         <img (click)="takeCard()" [ngStyle]="{'right.px': i * 7}" [class.top-card]="i === cardsLeftArray.length - 1" *ngFor="let card of cardsLeftArray; let i= index"
             src="img/cards/card_cover.png" alt="">
         <img *ngIf="isTaken" class="cardTaken" [ngStyle]="{'right.px': 25, 'z-index': 2}"
