@@ -19,7 +19,7 @@
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  background-image: url('/img/background.jpg');
+  background-image: url('/img/background.jpg'); // /Angular/ringoffire/browser/img/background.jpg
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -35,7 +35,7 @@
     position: absolute;
     transition: all 0.3s ease;
 
-    &:nth-child(6) {
+    &.top-card {
       right: 0;
 
       &:hover {
@@ -43,6 +43,7 @@
         rotate: -5deg;
       }
     }
+
   }
 
 }
@@ -58,9 +59,11 @@
   0% {
     transform: rotate(-5deg) scale(1.05);
   }
+
   50% {
     transform: rotate(-5deg) scale(1.5);
   }
+
   100% {
     transform: rotate(0deg) scale(1.5) translateX(100px) translateY(-200px);
   }
