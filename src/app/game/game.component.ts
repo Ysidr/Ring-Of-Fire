@@ -9,7 +9,8 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
 import { CardRulesComponent } from '../card-rules/card-rules.component';
 import { MatCardModule } from '@angular/material/card';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-game',
   standalone: true,
@@ -26,57 +27,64 @@ export class GameComponent {
   cardsLeft: number = 50;
   cardsLeftArray: number[] = [];
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, public firestore: Firestore) {
 
   }
 
   ngOnInit(): void {
     this.newGame();
-    this.cardStackDisplaySize()
+    this.cardStackDisplaySize();
+
+    const gamesCollection = collection<Game>(this.firestore, 'games');
+
+    collectionData(gamesCollection, { idField: 'id' })
+      .subscribe((games) => {
+        this.game = games[0];
+      });
+  };
+
+
+takeCard() {
+  if (this.isTaken) {
+    return;
   }
+  this.isTaken = true;
+  this.currentCard = this.game.Stack.pop() || "";
+  setTimeout(() => {
+    this.game.LayedCards.push(this.currentCard);
+  }, 1000);
+  setTimeout(() => {
+    this.isTaken = false;
+  }, 1000);
+  this.game.CurrentPlayer = (this.game.Players.length > 0) ? (this.game.CurrentPlayer + 1) % this.game.Players.length : 0;
+  this.cardStackDisplaySize()
+}
 
-
-  takeCard() {
-    if (this.isTaken) {
-      return;
+cardStackDisplaySize() {
+  this.cardsLeft = this.game.Stack.length;
+  this.cardsLeftArray = [];
+  if (this.cardsLeft < 6) {
+    for (let i = 0; i < this.cardsLeft; i++) {
+      this.cardsLeftArray.push(i);
     }
-    this.isTaken = true;
-    this.currentCard = this.game.Stack.pop() || "";
-    setTimeout(() => {
-      this.game.LayedCards.push(this.currentCard);
-    }, 1000);
-    setTimeout(() => {
-      this.isTaken = false;
-    }, 1000);
-    this.game.CurrentPlayer = (this.game.Players.length > 0)?(this.game.CurrentPlayer + 1) % this.game.Players.length: 0;
-    this.cardStackDisplaySize()
+  } else {
+    this.cardsLeftArray = [0, 1, 2, 3, 4, 5]
   }
+}
 
-  cardStackDisplaySize() {
-    this.cardsLeft = this.game.Stack.length;
-    this.cardsLeftArray = [];
-    if (this.cardsLeft < 6) {
-      for (let i = 0; i < this.cardsLeft; i++) {
-        this.cardsLeftArray.push(i);
-      }
-    }else {
-      this.cardsLeftArray = [0,1,2,3,4,5]
+newGame() {
+  this.game = new Game();
+}
+
+openDialog(): void {
+  const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
+  });
+
+  dialogRef.afterClosed().subscribe((name: string) => {
+    if (name) {
+      this.game.Players.push(name);
     }
-  }
-
-  newGame() {
-    this.game = new Game();
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogAddPlayerComponent, {
-    });
-
-    dialogRef.afterClosed().subscribe((name: string) => {
-      if (name) {
-        this.game.Players.push(name);
-      }
-    });
-  }
+  });
+}
 
 }

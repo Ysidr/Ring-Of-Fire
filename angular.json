@@ -70,10 +70,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "RingOfFire:build:production"
+              "buildTarget": "ring-of-fire:build:production"
             },
             "development": {
-              "buildTarget": "RingOfFire:build:development"
+              "buildTarget": "ring-of-fire:build:development"
             }
           },
           "defaultConfiguration": "development"
